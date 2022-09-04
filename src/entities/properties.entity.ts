@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany, ManyToOne, OneToOne, JoinColumn } from "typeorm";
-import { Addresses } from "./addresses.entity";
+import { Address } from "./addresses.entity";
 import { Categories } from "./categories.entity";
 import { Schedules_users_properties } from "./schedules_users_properties.entity";
 
@@ -8,14 +8,14 @@ export class Properties {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   
-  @Column()
+  @Column({default: false})
   sold: Boolean;
 
   @Column()
-  value: Number;
+  value: number;
 
-  @Column()
-  size: Number;
+  @Column({type: 'integer'})
+  size: number;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -23,10 +23,10 @@ export class Properties {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => Addresses)@JoinColumn()
-  addresses: Addresses
+  @OneToOne(() => Address, {eager: true})@JoinColumn()
+  address: Address
 
-  @ManyToOne(() => Categories, (Categories) => Categories.id)
+  @ManyToOne(() => Categories, (Categories) => Categories.id, {eager: true})
   categories: Categories
 
   @OneToMany(() => Schedules_users_properties, (Schedules_users_properties) => Schedules_users_properties.properties)

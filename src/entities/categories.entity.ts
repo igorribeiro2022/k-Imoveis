@@ -7,7 +7,7 @@ export class Categories {
   id: string;
   
   @Column()
-  name: String;
+  name: string;
 
   @OneToMany(() => Properties, (Properties) => Properties.categories)
   properties: Properties[]

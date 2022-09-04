@@ -9,7 +9,7 @@ const authTokenMiddleware = (
   let token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: "You must be logged" });
+    return res.status(401).json({ message: "Invalid token" });
   }
 
   token = token.split(" ")[1];

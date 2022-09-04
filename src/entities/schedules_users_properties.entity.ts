@@ -7,13 +7,13 @@ export class Schedules_users_properties {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   
-  @CreateDateColumn()
+  @Column({type: 'date'})
   date: Date;
 
-  @Column()
-  hour: Date;
+  @Column({type: 'time'})
+  hour: string;
 
-  @ManyToOne(() => Users, (Users) => Users.id)
+  @ManyToOne(() => Users, (Users) => Users.id, {eager: true})
   users: Users
 
   @ManyToOne(() => Properties, (Properties) => Properties.id)

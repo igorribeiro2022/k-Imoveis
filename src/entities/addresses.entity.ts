@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity("addresses")
-export class Addresses {
+@Entity("address")
+export class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   
@@ -11,8 +11,8 @@ export class Addresses {
   @Column()
   zipCode: string;
 
-  @Column()
-  number: number;
+  @Column({length: 5})
+  number?: string;
 
   @Column()
   city: string;

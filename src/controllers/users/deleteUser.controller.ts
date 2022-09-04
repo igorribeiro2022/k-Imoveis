@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AppError } from "../../errors/appError";
 import deleteUserService from "../../services/users/deleteUser.service";
 
 const deleteUserController = async (req: Request, res: Response) => {
@@ -8,8 +9,8 @@ const deleteUserController = async (req: Request, res: Response) => {
 
     return res.status(204).send();
   } catch (err) {
-    if (err instanceof Error) {
-        return res.status(400).send({
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).send({
           error: err.name,
           message: err.message,
         });  

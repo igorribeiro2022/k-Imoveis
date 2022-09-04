@@ -10,17 +10,17 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   const user = await userRepository.findOne({ where: { email: email } });
 
   if (!user) {
-    throw new AppError("Invalid email or password", 401);
+    throw new AppError("Invalid credentials", 403);
   }
 
   if (user.isActive === false) {
-    throw new AppError("Invalid user", 401);
+    throw new AppError("User is not active", 400);
   }
 
   const compararPassword = await bcrypt.compare(password, user.password);
 
   if (!compararPassword) {
-    throw new AppError("Invalid email or password", 401);
+    throw new AppError("Invalid credentials", 403);
   }
 
   const token = jwt.sign(
@@ -29,7 +29,7 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
     { expiresIn: "24h" }
   );
 
-  return token;
+  return {token};
 };
 
 export default userLoginService;
