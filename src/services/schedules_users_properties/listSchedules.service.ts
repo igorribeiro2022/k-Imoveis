@@ -1,16 +1,16 @@
 import AppDataSource from "../../data-source";
-import { Schedules_users_properties } from "../../entities/schedules_users_properties.entity";
+import { Properties } from "../../entities/properties.entity";
 import { AppError } from "../../errors/appError";
 
 const listSchedulesService = async (id: string) => {
-    const schedulesRepository = AppDataSource.getRepository(Schedules_users_properties)
-    const schedules = await schedulesRepository.findOne({where: {id}, relations: {property: true}})
+    const propertiesRepository = AppDataSource.getRepository(Properties)
+    const property = await propertiesRepository.findOne({where: {id}, relations: {schedules: true}})
 
-    if (!schedules) {
+    if (!property) {
         throw new AppError("Property not found", 404);
     }
 
-    return schedules
+    return property
 };
 
 export default listSchedulesService;

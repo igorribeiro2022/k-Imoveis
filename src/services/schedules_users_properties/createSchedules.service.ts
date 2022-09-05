@@ -31,18 +31,17 @@ const createSchedulesService = async ({ date, hour, propertyId, userId }: ISched
     }
     
     
-    const newHour = Number(hour)
-    console.log(newHour);
-    if (newHour < 8 || newHour > 18) {
+    const newHour = Number(hour.split(":").join(""))
+    if (newHour < 800 || newHour > 1800) {
         throw new AppError("Invalid hour", 400);
     }
 
 
     const schedulesProperties = await schedulesRepository.find({
-        relations: { property: true },
-        where: { date, hour, property: properties }
-    })    
-    if (schedulesProperties.length > 0) {
+        where: { date, hour }
+    })
+    const checkSchedule = schedulesProperties.filter(elem => elem.property.id === propertyId)
+    if (checkSchedule.length > 0) {
         throw new AppError("Schedules already exists", 400);
     }
 
@@ -52,7 +51,7 @@ const createSchedulesService = async ({ date, hour, propertyId, userId }: ISched
         date,
         hour,
         property: properties,
-        users
+        user: users
     })
 
     await schedulesRepository.save(newSchedule)

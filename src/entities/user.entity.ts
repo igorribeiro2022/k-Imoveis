@@ -29,6 +29,6 @@ export class Users {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Schedules_users_properties, (schedules_users_properties) => schedules_users_properties.users)
+  @OneToMany(() => Schedules_users_properties, (schedules_users_properties) => schedules_users_properties.user)
   schedules_users_properties: Schedules_users_properties[]
 }

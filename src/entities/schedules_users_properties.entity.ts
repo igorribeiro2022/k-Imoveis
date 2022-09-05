@@ -14,7 +14,7 @@ export class Schedules_users_properties {
   hour: string;
 
   @ManyToOne(() => Users, {eager: true})
-  users: Users
+  user: Users
 
   @ManyToOne(() => Properties, {eager: true})
   property: Properties

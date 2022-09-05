@@ -6,7 +6,6 @@ const createSchedulesController = async (req: Request, res: Response) => {
     try {
       const userId = req.user.id
       const { date, hour, propertyId } = req.body
-      console.log(userId);
       
       await createSchedulesService({ date, hour, propertyId, userId })
 
