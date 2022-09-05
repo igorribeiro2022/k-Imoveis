@@ -26,7 +26,7 @@ const authTokenMiddleware = (
 
       req.user = {
         isAdm: decoded.isAdm,
-        id: decoded.sub,
+        id: decoded.id
       };
 
       next();

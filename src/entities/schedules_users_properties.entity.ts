@@ -8,14 +8,14 @@ export class Schedules_users_properties {
   id: string;
   
   @Column({type: 'date'})
-  date: Date;
+  date: string;
 
   @Column({type: 'time'})
   hour: string;
 
-  @ManyToOne(() => Users, (Users) => Users.id, {eager: true})
+  @ManyToOne(() => Users, {eager: true})
   users: Users
 
-  @ManyToOne(() => Properties, (Properties) => Properties.id)
-  properties: Properties
+  @ManyToOne(() => Properties, {eager: true})
+  property: Properties
 }

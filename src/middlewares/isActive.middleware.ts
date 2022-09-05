@@ -13,7 +13,7 @@ async function isActiveMiddleware (req: Request, res: Response, next: NextFuncti
   }
 
   if (!user?.isActive) {
-    return res.status(403).json({message: "Inactive user"})
+    return res.status(400).json({message: "Inactive user"})
   }
 
   next()

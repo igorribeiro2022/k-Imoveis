@@ -36,7 +36,6 @@ const createPropertyService = async (property: IPropertyRequest): Promise<Proper
   });
 
   const propertyAlreadyExists = await propertiesRepository.find({where: {address: property.address}});
-  //const categoryAlreadyExists = await categoriesRepository.find({where: {id: property.categoryId}});
   if (!category) {
     throw new AppError("Category not found", 404);
   }
@@ -49,7 +48,7 @@ const createPropertyService = async (property: IPropertyRequest): Promise<Proper
     value: property.value,
     size: property.size,
     address: newAddress,
-    categories: category,
+    category,
   });
 
   await propertiesRepository.save(newProperty);

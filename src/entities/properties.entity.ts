@@ -9,7 +9,7 @@ export class Properties {
   id: string;
   
   @Column({default: false})
-  sold: Boolean;
+  sold: boolean;
 
   @Column()
   value: number;
@@ -27,8 +27,8 @@ export class Properties {
   address: Address
 
   @ManyToOne(() => Categories, (Categories) => Categories.id, {eager: true})
-  categories: Categories
+  category: Categories
 
-  @OneToMany(() => Schedules_users_properties, (Schedules_users_properties) => Schedules_users_properties.properties)
+  @OneToMany(() => Schedules_users_properties, (Schedules_users_properties) => Schedules_users_properties.property)
   schedules_users_properties: Schedules_users_properties[]
 }

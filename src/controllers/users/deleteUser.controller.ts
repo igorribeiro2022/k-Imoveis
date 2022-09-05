@@ -11,7 +11,6 @@ const deleteUserController = async (req: Request, res: Response) => {
   } catch (err) {
     if (err instanceof AppError) {
         return res.status(err.statusCode).send({
-          error: err.name,
           message: err.message,
         });  
     }
