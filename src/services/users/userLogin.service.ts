@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import * as bcrypt from "bcryptjs";
-import { IUserLogin } from "../../interfaces/users";
 import AppDataSource from "../../data-source";
+import * as bcrypt from "bcryptjs";
 import { Users } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
+import { IUserLogin } from "../../interfaces/users";
 
 const userLoginService = async ({ email, password }: IUserLogin) => {
   const userRepository = AppDataSource.getRepository(Users);
@@ -29,7 +29,7 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
     { expiresIn: "24h" }
   );
 
-  return {token};
+  return { token };
 };
 
 export default userLoginService;

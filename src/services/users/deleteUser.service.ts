@@ -13,9 +13,8 @@ const deleteUserService = async (id: string) => {
   if (!userExist.id) {
     throw new AppError("User not found", 404);
   }
-  
-  userExist.isActive = false 
 
+  userExist.isActive = false 
   await usersRepository.save(userExist)
 
   return
