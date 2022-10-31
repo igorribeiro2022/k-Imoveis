@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
-import { Properties } from "../../entities/properties.entity";
 import { AppError } from "../../errors/appError";
+import { Properties } from "../../entities/properties.entity";
 
 const listSchedulesService = async (id: string) => {
     const propertiesRepository = AppDataSource.getRepository(Properties)

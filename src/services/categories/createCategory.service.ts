@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
-import { Categories } from "../../entities/categories.entity";
 import { AppError } from "../../errors/appError";
+import { Categories } from "../../entities/categories.entity";
 import { ICategoryRequest } from "../../interfaces/categories";
 
 const createCategoryService = async ({ name }: ICategoryRequest) => {

@@ -6,12 +6,11 @@ import { Address } from "../../entities/addresses.entity";
 import { Categories } from "../../entities/categories.entity";
 
 const createPropertyService = async (property: IPropertyRequest): Promise<Properties> => {
-  
   const propertiesRepository = AppDataSource.getRepository(Properties);
   const addressesRepository = AppDataSource.getRepository(Address);
   const categoriesRepository = AppDataSource.getRepository(Categories);
   
-  const { address, categoryId, size, value } = property
+  const { address } = property
 
   if (address.state.length > 2) {
     throw new AppError("Invalid state", 400);
